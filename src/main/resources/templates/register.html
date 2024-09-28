@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+>
+<head>
+    <meta charset="utf-8">
+    <style>
+        table{
+        margin-left: 17vw;
+        margin-top: 15vh;
+        margin-bottom: 15vh;
+        font-size: 18pt;
+        }
+        td{
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        padding-right: 30px;
+        }
+        input{
+        width: 35vw;
+        }
+        .big{
+        width: 35vw;
+        height: 15vh;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<div layout:fragment="content">
+    <h1>Register</h1>
+    <table>
+        <form th:action="@{/register}" method="post" th:object="${register}">
+            <tr>
+                <td><label>Username</label></td>
+                <td><input type="text" th:field="*{username}"></td>
+            </tr>
+            <tr>
+                <td><label>Password</label></td>
+                <td><input type="text" th:field="*{password}"></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Register</button></td>
+            </tr>
+        </form>
+    </table>
+
+</div>
+
+</body>
+</html>

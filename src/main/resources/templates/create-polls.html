@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+>
+<head>
+    <meta charset="utf-8">
+    <style>
+        table{
+        margin-left: 17vw;
+        margin-top: 15vh;
+        margin-bottom: 15vh;
+        font-size: 18pt;
+        }
+        td{
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        padding-right: 30px;
+        }
+        input{
+        width: 35vw;
+        }
+        .big{
+        width: 35vw;
+        height: 15vh;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<div layout:fragment="content">
+
+    <table>
+        <form th:action="@{/create}" method="post" th:object="${data}">
+            <tr>
+                <td><label>Title</label></td>
+                <td><input type="text" th:field="*{title}"></td>
+            </tr>
+            <tr>
+                <td><label>PhotoUrl</label></td>
+                <td><input type="text" th:field="*{photoUrl}"></td>
+            </tr>
+            <tr>
+                <td><label>Description</label></td>
+                <td><input type="text" th:field="*{description}"></td>
+            </tr>
+            <tr>
+                <td><label>Options (Separate with comma)</label></td>
+                <td><input type="text" th:field="*{options}"></td>
+            </tr>
+            <tr>
+                <td><label>PhotoUrls (Seperate with comma)</label></td>
+                <td><textarea class="big" th:field="*{photoUrls}"></textarea></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Create poll</button></td>
+            </tr>
+        </form>
+    </table>
+
+</div>
+
+</body>
+</html>

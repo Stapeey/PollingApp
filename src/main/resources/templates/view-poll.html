@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}"
+>
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <h1 style="padding-top: 15vh; padding-bottom: 15vh; text-align: center;">Available Polls</h1>
+
+    <footer>
+        <div class="footer-blurb">
+            <div class="container">
+                <div class="row">
+                    <div style="font-size: 24pt;" class="footer-blurb-item">
+                        <h1  th:text="${poll.title}">View current polls</h1>
+                    </div>
+                    <form th:each="photo, iterStat : ${poll.photoUrls}"  th:action="@{/polls/{pollId}/{option}(pollId=${pollId}, option=${iterStat.index})}" method="post" >
+                    <button style="width: 60vw; height: 20vh; position: relative" type="submit">
+                    <div th:style="'position:absolute;height: 19vh;z-index: 0; width: ' + ${votes[iterStat.index]} + '%; background-color: orange;'">
+                        <p th:text="${votes[iterStat.index]}"></p>
+                    </div>
+
+                    <div style="position: relative; z-index: 1;margin-left: 0; text-align: start; height: 20vh;">
+                        <img class="img-circle" th:src="${photo}" alt="" style="width: 20%; height: 50%; max-width: 100px; max-height: 100px;">
+                        <h3 th:text="${poll.options[iterStat.index]}">View current polls</h3>
+                    </div>
+
+                    </button>
+                    </form>
+                    <form th:if="${poll.createdBy.username == user}"
+                    th:action="@{/delete/{pollId}(pollId=${pollId})}" method="post" >
+                        <button class="btn btn-default" type="submit">Delete</button>
+                    </form>
+                    <!--<p><a class="btn btn-default" th:href="/delete/{pollId}(pollId=${poll.id})">Delete</a></p>-->
+
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+        <div class="small-print">
+            <div class="container">
+                <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+                <p>Copyright &copy; Example.com 2015 </p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
